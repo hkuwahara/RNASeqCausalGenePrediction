@@ -1,0 +1,2 @@
+chr	strand	start	end	gene_id	gene_symbol	omega	rate	log10(alpha)	log10(beta)
+1	-	160276812	160286348	ENSG00000162735.18	PEX19	3.54418	0.919234	1.1182	-0.0340326

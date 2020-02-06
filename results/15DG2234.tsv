@@ -1,0 +1,2 @@
+chr	strand	start	end	gene_id	gene_symbol	omega	rate	log10(alpha)	log10(beta)
+1	+	215567392	215621807	ENSG00000136636.12	KCTD3	1.24447	0.135113	0.794026	0.544492
