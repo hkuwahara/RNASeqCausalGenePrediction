@@ -1,0 +1,2 @@
+1. Do the same steps given in the cummings method to generate normalized scores.
+2.  Configure run_goronazky.sh and run it for each case.

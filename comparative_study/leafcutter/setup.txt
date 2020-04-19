@@ -1,0 +1,5 @@
+1. Follow the instructions at https://davidaknowles.github.io/leafcutter/ to install leafcutter with the hg38 coordinate system configuration.
+
+2. Follow up to Step 2 of the instructions at https://davidaknowles.github.io/leafcutter/articles/Usage.html to generate intron clusters for all the samples (cases and GTEx) from the two tissue types (LCL and FB).  Run leafcutter_cluster.py with options to have at 30 split reads supporting each cluster and to allow introns of up to 500kb (i.e., "-m 30" and "-l 500000"). 
+
+

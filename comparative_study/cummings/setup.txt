@@ -1,0 +1,5 @@
+1. Download the tool from https://github.com/berylc/MendelianRNA-seq and set up its runtime environment.
+2. For each tissue type, get a list of chromosomes which contain DNA regions listed in ROH, and sort and index the bam files of all samples (cases and GTEx).
+3. Follow the instructions (and example) to generate junction file using the annotation data located under the annotation subdirectory and gene list located under the gene_list subdirectory.
+4. Follow the instructions (and example), normalize the splicing junction scores.  Place the normalized scores in ./results.
+5  Configure run_cummings.sh and run it for each case.

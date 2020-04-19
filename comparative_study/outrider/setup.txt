@@ -1,0 +1,14 @@
+
+1. Generate gene-level count data of samples  (from both cases and GTEx) and combine them into tables based on their tissue types (fibroblast-derived and LCL-derived ones), with columns representing samples and rows representing genes.  Note that the gene-level count data must be rounded to the nearest integer.  The GTEx samples from each tissue type that were used in this comparative study are listed in files under comparative_study/data.  
+
+2. Configure run_outrider.R to correctly set the paths for the tables and results.
+
+3. Run run_outrider.R
+
+4. Extract genes based on the position-filtered gene list for each case.
+
+
+   
+   
+    
+

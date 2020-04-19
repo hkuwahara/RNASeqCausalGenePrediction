@@ -1,0 +1,6 @@
+1. Run leafcutter up to the generation of clusters following the intructions given in comparative_study/leafcutter and generate perind_numers.counts.gz for each tissue type.  Place them into ./junc_data with unique prefix. 
+2. Install SPOT.
+3. Configure run_spot.sh to correctly set the prefix and the SPOT directory.
+4. Run ./run_spot.sh 
+5. For each case, extract splicing events with p-value < 0.0027 from results/${prefix_name}_emperical_pvalue.txt and filter the genes using the position-filtered gene list for the given case.
+

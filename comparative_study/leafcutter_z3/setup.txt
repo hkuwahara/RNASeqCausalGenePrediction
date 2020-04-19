@@ -1,0 +1,3 @@
+1. follow the instructions placed in the leafcutter directory to generate intron cluster data for each tissue type for each chromosome of interest (i.e., 1,...,22, and X).
+2. Configure run_leafcutter_z3.sh and run it for each case.
+

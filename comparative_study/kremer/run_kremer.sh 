@@ -1,0 +1,26 @@
+#! /bin/bash
+
+leafcutter_dir=""
+results_dir=results
+roh_gene_dir=$(cd ..; pwd)/data/genes_roh
+
+tissue=$1
+case_id=$2
+cluster_dir=$3
+
+mkdir -p ${results_dir}
+
+rm -f ${results_dir}/${case_id}_sig_p_val.tsv
+
+chr_list=({1..22} X)
+for chr in ${chr_list[@]};
+do
+	zcat ${cluster_dir}/${tissue}_chr${chr}_perind_numers.counts.gz  | head -1 | awk 'BEGIN{RS=" ";} {print $1;}' | awk -v subj="${case_id}" -v ch="${chr}" 'BEGIN{FS="\t"; OFS="\t";} ($1 == (subj "_chr" ch)){print $1, "case"; next;} {print $1, "control"}' > group_${case_id}_chr${chr}.txt
+	${leafcutter_dir}/scripts/leafcutter_ds.R --output_prefix=${case_id}_chr${chr} --min_samples_per_intron=1 --min_samples_per_group=1 --exon_file=${leafcutter_dir}/annotation/leafcutter.exons.txt.gz ${tissue}_chr${chr}_perind_numers.counts.gz group_${case_id}_chr${chr}.txt
+
+# extract splicing events with p < 0.05
+	awk -v ch="chr${chr}" 'BEGIN{FS="\t"; cutoff=0.05; OFS="\t";} NR==1{next;} ($2 == "Success" && $6 <= cutoff){ print ch, $1, $6, $7;}' <(cut -d':' -f2 ${case_id}_chr${chr}_cluster_significance.txt) >> ${results_dir}/${case_id}_sig_p_val.tsv
+done
+
+awk 'BEGIN{FS=",";} {for(i=1; i <= NF; i++) {a[$i] = 1;}} END{for( g in a ){print g;}}' <(cut -f4 ${results_dir}/${case_id}_sig_p_val.tsv) | awk 'BEGIN{FS="\t";} NR==1{next;} NR==FNR{a[$6] = 1; next;} ($1 in a){print $1;}' ${roh_gene_dir}/${case_id}.tsv - > ${results_dir}_roh_sig_genes.list 	
+
